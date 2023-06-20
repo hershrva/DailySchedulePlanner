@@ -1,4 +1,5 @@
 var timeDisplayEl = $('#currentDay');
+var timeBlockEl = $('.time-block');
 
 function displayTime() {
   var rightNow = dayjs().format('MMM DD, YYYY [at] hh:mm:ss a');
@@ -28,5 +29,35 @@ $(function () {
   // TODO: Add code to display the current date in the header of the page.
 });
 
+function checkTime() {
+  var currentHour = parseInt(dayjs().format('h'));
+  console.log(currentHour);
+  timeBlockEl.each(function () {
+  var timeBlock = parseInt($(this).attr('id').split('-')[1]);
+  console.log(timeBlock);
+
+  var descriptionEl = $(this).find('.description');
+
+  if (currentHour > timeBlock){
+      descriptionEl.addClass('future');
+      descriptionEl.removeClass('past');
+      descriptionEl.removeClass('present');
+      console.log('before');
+  } else if (currentHour < timeBlock){
+      timeBlockEl.addClass('past');
+      descriptionEl.removeClass('present');
+      descriptionEl.removeClass('future');
+      console.log('after');
+  } else {
+      descriptionEl.addClass('present');
+      descriptionEl.removeClass('past');
+      descriptionEl.removeClass('future');
+      console.log('else');
+  } 
+});
+}
+
+
 displayTime();
+checkTime();
 setInterval(displayTime, 1000);
