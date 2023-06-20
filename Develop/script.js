@@ -1,5 +1,6 @@
 var timeDisplayEl = $('#currentDay');
 var timeBlockEl = $('.time-block');
+var saveBtn = $('.saveBtn')
 
 function displayTime() {
   var rightNow = dayjs().format('MMM DD, YYYY [at] hh:mm:ss a');
@@ -8,7 +9,7 @@ function displayTime() {
 // Wrap all code that interacts with the DOM in a call to jQuery to ensure that
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
-$(function () {
+$(document).ready(function () {
   // TODO: Add a listener for click events on the save button. This code should
   // use the id in the containing time-block as a key to save the user input in
   // local storage. HINT: What does `this` reference in the click listener
@@ -30,33 +31,57 @@ $(function () {
 });
 
 function checkTime() {
-  var currentHour = parseInt(dayjs().format('h'));
-  console.log(currentHour);
   timeBlockEl.each(function () {
-  var timeBlock = parseInt($(this).attr('id').split('-')[1]);
-  console.log(timeBlock);
+    var currentHour = parseInt(dayjs().format('H'));
+    var timeBlock = parseInt($(this).attr('id').split('hour-')[1]);
+    console.log(timeBlock);
 
-  var descriptionEl = $(this).find('.description');
+    var descriptionEl = $(this).find('.description');
 
-  if (currentHour > timeBlock){
+    if (currentHour < timeBlock) {
       descriptionEl.addClass('future');
       descriptionEl.removeClass('past');
       descriptionEl.removeClass('present');
       console.log('before');
-  } else if (currentHour < timeBlock){
-      timeBlockEl.addClass('past');
+    } else if (currentHour > timeBlock) {
+      descriptionEl.addClass('past');
       descriptionEl.removeClass('present');
       descriptionEl.removeClass('future');
       console.log('after');
-  } else {
+    } else {
       descriptionEl.addClass('present');
       descriptionEl.removeClass('past');
       descriptionEl.removeClass('future');
       console.log('else');
-  } 
-});
+    }
+  });
 }
 
+function handleEventSubmit(event) {
+  event.preventDefault();
+  console.log("handle ", event.target.parent.getAttribute('id'));
+
+  var timeBlock =  $(this).parent().getAttribute('id');
+  console.log(timeBlock);
+  var inputText = $(this).siblings(".description").val();
+  console.log(inputText);
+
+  var newEvent = {
+      time: timeBlock,
+      event: inputText,
+  };
+
+  var events = readEventsFromStorage();
+  events.push(newEvent);
+  console.log('here is events: ', events);
+  saveEventsToStorage(events);
+
+  printEventData();
+}
+
+
+
+saveBtn.addEventListener("click", handleEventSubmit);
 
 displayTime();
 checkTime();
