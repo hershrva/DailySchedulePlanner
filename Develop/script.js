@@ -7,7 +7,7 @@ var localStorageAlert = $('.local-storage-alert')
 $(document).ready(function () {
 
 function displayTime() {
-  var rightNow = dayjs().format('MMM DD, YYYY [at] hh:mm:ss a');
+  var rightNow = dayjs().format('dddd, MMM DD, YYYY [at] hh:mm:ss a');
   timeDisplayEl.text(rightNow);
 }
 
@@ -47,7 +47,7 @@ function handleEventSubmit(event) {
 
   timeBlock = $(this).parent().attr('id');
   console.log(timeBlock);
-  inputText = $(this).siblings(".description").val();
+  inputText = $(this).siblings(".description").val().trim();
   console.log(inputText);
 
   var checkmark = "\u2713";
@@ -62,7 +62,7 @@ function saveEventsToStorage() {
 }
 
 function readEventsFromStorage() {
-  var hours = ["hour-8", "hour-9", "hour-10", "hour-11", "hour-12", "hour-13", "hour-14", "hour-15", "hour-16", "hour-17"];
+  var hours = ["hour-9", "hour-10", "hour-11", "hour-12", "hour-13", "hour-14", "hour-15", "hour-16", "hour-17"];
   
   hours.forEach(function(hour) {
     var readEvent = JSON.parse(localStorage.getItem(hour));
