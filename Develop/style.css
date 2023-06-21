@@ -1,8 +1,10 @@
+/* sets font style and size for all text in body */
 body {
   font-family: 'Open Sans', sans-serif;
   font-size: 16px;
 }
 
+/* sets a transparent background for text aread to have it not clash when different classes are assigned to it */
 textarea {
   background: transparent;
   border: none;
@@ -29,7 +31,7 @@ textarea {
   color: #000000;
   border-top: 1px dashed #000000;
 }
-
+/* sets up background colors for the three classes assigned based on the timeblock relative to the current hour */
 .past {
   background-color: #d3d3d3;
   color: black;
@@ -52,7 +54,7 @@ textarea {
   background-color: #06aed5;
   color: white;
 }
-
+/* enlarges the save icon when the cursor hovers over it */
 .saveBtn i:hover {
   font-size: 20px;
   transition: all 0.3s ease-in-out;
