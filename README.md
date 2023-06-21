@@ -26,11 +26,11 @@ Multiple events can be saved to local storage to set a schedule for the work day
 
 
 
-![alt text](assets/screenshot1.png)
-![alt text](assets/screenshot2.png)
-![alt text](assets/screenshot3.png)
-![alt text](assets/screenshot4.png)
-![alt text](assets/screenshot5.png)
+![alt text](./Assets/screenshot1.png)
+![alt text](./Assets/screenshot2.png)
+![alt text](./Assets/screenshot3.png)
+![alt text](./Assets/screenshot4.png)
+![alt text](./Assets/screenshot5.png)
 
 
 ## License
